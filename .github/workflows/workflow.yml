@@ -14,9 +14,12 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-      
+
       - name: Start Redis
-        uses: redis-labs/redis-action@v1.3
-      
+        uses: supercharge/redis-github-action@1.8.0
+
       - name: Run tests
+        env:
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
         run: npm test
